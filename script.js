@@ -1,42 +1,44 @@
 function threeSum(arr, target) {
-// write your code here
+let opArr = [];
 
-    arr.sort((x,y)=>{
-		if(x > y){
-			return 1;
-		}
-		if(x < y){
-			return -1;
-		}
-		return 0;
-	});
+function findCombi(sum,index,arr){
+  
+  if(sum.length > 3){
+    return;
+  }
+  if(index === arr.length){
+    opArr.push(sum);
+    return;
+  }
+  
+  let arr1 = [... sum];
+  arr1.push(arr[index]);
+  let arr2 = [...sum];
+  
+  findCombi(arr1,index+1,arr);
+  findCombi(arr2,index+1,arr)
+  
+}
+findCombi([], 0, arr);
+
 
 	
-	let reqSum = Number.MAX_SAFE_INTEGER;let sum2;
-
-	for(let i=0; i<arr.length; i++)
-	{
-		let sum1 = target-arr[i];
-		 let start=i+1;  let end= arr.length-1;
-		
-		while(start < end){
-		    sum2 = arr[start] +arr[end];
-			if(sum2 ===  sum1){
-				break;
-			}
-			if(sum2 < sum1){
-				start++;
-			}
-			if(sum2 > sum1){
-				end--;
-			}
-		}
-
-		if((arr[i]+sum2-target) < (reqSum-target)){
-			reqSum = sum2+arr[i];
-		}
-	}
-  return sum2;
+let reqSu = Number.MAX_SAFE_INTEGER;
+for(let i = 0; i< opArr.length; i++)
+{
+  if(opArr[i].length === 3)
+  {
+    let sum = 0;
+    for(let j = 0; j< opArr[i].length; j++){
+      sum += opArr[i][j];
+    }
+    if(Math.abs(sum - target) < (reqSu - target)){
+      reqSu = sum;
+      
+    }
+  }
+}
+return reqSu;
 }
 
 module.exports = threeSum;
