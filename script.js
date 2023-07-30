@@ -23,7 +23,7 @@ findCombi([], 0, arr);
 
 
 	
-let reqSu = 0;
+let reqSu = Number.MAX_SAFE_INTEGER;
 for(let i = 0; i< opArr.length; i++)
 {
   if(opArr[i].length === 3)
@@ -32,7 +32,7 @@ for(let i = 0; i< opArr.length; i++)
     for(let j = 0; j< opArr[i].length; j++){
       sum += opArr[i][j];
     }
-    if(Math.abs(sum - target) < (target - reqSu) || sum === target){
+    if(Math.abs(sum - target) < Math.abs(target - reqSu) || sum === target){
       reqSu = sum;
       
     }
