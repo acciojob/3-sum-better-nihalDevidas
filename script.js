@@ -12,14 +12,14 @@ function threeSum(arr, target) {
 	});
 
 	
-	let reqSum = 0;
+	let reqSum = Number.MAX_SAFE_INTEGER;let sum2;
 
 	for(let i=0; i<arr.length; i++)
 	{
 		 let start=i+1;  let end= arr.length-1;
 		
 		while(start < end){
-			let sum2 = arr[start] +arr[end]+arr[i];
+		    sum2 = arr[start] +arr[end]+arr[i];
 			
              if((sum2 - target) < (reqSum - target))
 			 {
@@ -27,7 +27,7 @@ function threeSum(arr, target) {
 			 }		
 		}
 	}
-  
+  return sum2;
 }
 
 module.exports = threeSum;
